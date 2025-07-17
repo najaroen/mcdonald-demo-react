@@ -1,11 +1,13 @@
 "use client";
 import Image from "next/image";
 import Layout from "../components/layout";
+import Link from "next/link";
 
 const OrderPage = () => {
   const menuList = [
     {
       title: "Dine In",
+      to: "/dinein",
       desc: "Estimate waiting time",
       img: "/images/icons/eatin.png",
       time: "15",
@@ -17,6 +19,7 @@ const OrderPage = () => {
       img: "/images/icons/pickup.png",
       code: "pickup",
       time: "9",
+      to: "/pickup",
     },
     {
       title: "Delivery",
@@ -24,6 +27,7 @@ const OrderPage = () => {
       img: "/images/icons/delivery.png",
       time: undefined,
       code: "delivery",
+      to: "/delivery",
     },
   ];
   return (
@@ -46,9 +50,12 @@ const OrderPage = () => {
               McDonalds Bukit Bintang
             </p>
           </div>
-          <p className="text-md text-red-500 items-center font-bold pt-3">
+          <Link
+            href={"/order/location"}
+            className="text-md text-red-500 items-center font-bold pt-3"
+          >
             Change outlet
-          </p>
+          </Link>
         </div>
         <div className="grid grid-cols-1 gap-4 mx-4 mt-4">
           {menuList.map((menu, index) => (
@@ -57,7 +64,7 @@ const OrderPage = () => {
               className="w-full h-30 shadow-xl rounded-2xl grid grid-cols-3 items-center pl-8 pr-4"
             >
               <div className="grid grid-cols-1 items-center">
-                <p className="text-3xl text-black items-center font-bold">
+                <p className="text-2xl text-black items-center font-bold">
                   {menu.title}
                 </p>
                 <div>
@@ -84,15 +91,15 @@ const OrderPage = () => {
                 ) : null}
               </div>
               <div className="relative h-20">
-                <p className="absolute bg-[#41983F] text-white text-md font-bold z-10 bottom-0 right-0 px-3 py-1 rounded-xl">
+                <Link href={`/order/${menu.to}`} className="absolute bg-[#41983F] text-white text-xs font-bold z-10 bottom-0 right-0 px-3 py-1 rounded-xl">
                   Order Now
-                </p>
+                </Link>
               </div>
             </div>
           ))}
         </div>
         <div className="grid grid-cols-1 mx-4 mt-10">
-          <p className="text-3xl font-bold px-8">Order again</p>
+          <p className="text-xl font-bold px-8">Order again</p>
           <div className="w-full h-30 shadow-xl rounded-2xl grid grid-cols-3 items-center pl-8 pr-4">
             <div className="grid grid-cols-1 items-center">
               <div>
@@ -112,7 +119,7 @@ const OrderPage = () => {
               <p className="text-xs mt-4">17/8/2025 1:48 PM</p>
             </div>
             <div className="relative h-20">
-              <p className="absolute bg-[#ffc837] text-white text-md font-bold z-10 bottom-0 right-0 px-3 py-1 rounded-xl">
+              <p className="absolute bg-[#ffc837] text-white text-xs font-bold z-10 bottom-0 right-0 px-3 py-1 rounded-xl">
                 Reorder
               </p>
             </div>
